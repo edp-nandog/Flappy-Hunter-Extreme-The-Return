@@ -14,12 +14,18 @@ func _ready():
 
 func _process(delta):
 	movement.x = 0
+	
+	
+	if is_on_ceiling() or is_on_floor():
+		movement.y = 0
+		
 	movement.y += GRAVITY * delta
 	
 	key_input()
 				
 	move_and_slide(movement, UP_VECTOR)		
 	
+	set_animation()
 	
 	
 func key_input():
@@ -31,13 +37,19 @@ func key_input():
 		if position.x < 630: 
 			movement.x = +1 * SPEED
 	
-	if Input.is_action_just_pressed("jump"):
-		if on_ground == true:
+	if Input.is_action_just_pressed("jump") and is_on_floor():		
 			movement.y = -JUMP_POWER
-			on_ground = false
 	
-	if is_on_floor():
-		on_ground = true
-	else:
-		on_ground = false
-					
+func set_animation():
+	if movement.x < 0:
+		$Sprite.flip_h = true
+		$AnimationPlayer.play("walk")		
+	if movement.x > 0:
+		$Sprite.flip_h = false	
+		$AnimationPlayer.play("walk")
+		
+	if movement.x == 0:
+		$AnimationPlayer.play("stay")
+		
+	if is_on_floor() == false:
+		$AnimationPlayer.play("jump")

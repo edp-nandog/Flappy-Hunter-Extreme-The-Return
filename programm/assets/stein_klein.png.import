@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Baum_gross.png-789e7d5fac347db73176c1414e6e41d7.stex"
+path="res://.import/stein_klein.png-dc3a39304b175f25d6425afabef7e7dc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Baum_gross.png"
-dest_files=[ "res://.import/Baum_gross.png-789e7d5fac347db73176c1414e6e41d7.stex" ]
+source_file="res://assets/stein_klein.png"
+dest_files=[ "res://.import/stein_klein.png-dc3a39304b175f25d6425afabef7e7dc.stex" ]
 
 [params]
 
