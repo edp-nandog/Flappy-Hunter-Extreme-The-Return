@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/spielfigur.png" type="Texture" id=2]
@@ -66,21 +66,23 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 9.00429, 12.0042 )
+
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 31, 333 )
+position = Vector2( -1.00001, -12.0001 )
 rotation = 0.00938294
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 1 )
+position = Vector2( 4.01859, 1.96245 )
 texture = ExtResource( 2 )
 flip_h = true
 hframes = 4
 vframes = 3
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 2 )
+position = Vector2( 4.0186, 1.96244 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -88,3 +90,11 @@ anims/RESET = SubResource( 21 )
 anims/jump = SubResource( 22 )
 anims/stay = SubResource( 24 )
 anims/walk = SubResource( 23 )
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2( 4.01391, 1.95775 )
+rotation = -1.86264e-09
+scale = Vector2( 1, 1 )
+shape = SubResource( 25 )

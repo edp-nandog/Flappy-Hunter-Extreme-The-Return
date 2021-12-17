@@ -22,6 +22,7 @@ func _process(delta):
 	movement.y += GRAVITY * delta
 	
 	key_input()
+	check_for_dead()
 				
 	move_and_slide(movement, UP_VECTOR)		
 	
@@ -53,3 +54,9 @@ func set_animation():
 		
 	if is_on_floor() == false:
 		$AnimationPlayer.play("jump")
+
+
+func check_for_dead():
+	for body in $HitBox.get_overlapping_bodies():
+		if body.has_method("dead") and body.is_alive:
+			body.dead()
