@@ -7,6 +7,7 @@ const UP_VECTOR = Vector2(0, -1)
 
 var movement = Vector2()
 var on_ground = false
+var Enemy = preload ("res://Scenes/flappy_boden.tscn")
 
 func _ready():
 	pass 
@@ -60,3 +61,19 @@ func check_for_dead():
 	for body in $HitBox.get_overlapping_bodies():
 		if body.has_method("dead") and body.is_alive:
 			body.dead()
+			
+
+func _on_EnemyTimer_timeout():
+	var player = get_node("Path/To/Player")
+	var e = Enemy.instance()
+	var pos = player.position
+	
+	if randf() < 0.5:
+		
+		pos.x -= rand_range(50.0, 200.0)
+	else:
+		pos.x += rand_range(50.0, 200.0)
+		
+	e.position = pos
+	add_child(e)
+		
