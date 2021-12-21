@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal died
+
 const GRAVITY = 400
 const SPEED = 40
 const JUMP_POWER = 300
@@ -39,3 +41,5 @@ func _on_AnimatedSprite_animation_finished():
 		
 
 
+
+		
