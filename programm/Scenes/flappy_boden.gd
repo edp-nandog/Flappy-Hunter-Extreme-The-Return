@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-signal died
-
 const GRAVITY = 400
 const SPEED = 40
 const JUMP_POWER = 300
@@ -9,16 +7,20 @@ const UP_VECTOR = Vector2(0, -1)
 
 var movement = Vector2(SPEED, 0)
 var is_alive = true
-
-
-
+var t = Timer.new()
 
 func _ready():
+	$AnimatedSprite.play("dead")
+	if is_alive == false:
+		t.set_wait_time(5)
+		self.add_child(t)
+		t.start()
+		yield(t, "timeout")
+		is_alive = true
 	$AnimatedSprite.play("walk")
 	pass
 	
 func _physics_process(delta):
-
 	if is_alive == false:
 		return
 	movement.y += GRAVITY * delta
@@ -31,15 +33,15 @@ func _physics_process(delta):
 		
 		
 func dead():
-	$AnimatedSprite.play("dead")
-	is_alive = false
-
+	$AnimatedSprite.play("die")
+	
 
 func _on_AnimatedSprite_animation_finished():
-	if $AnimatedSprite.animation == "dead":
-		queue_free()
+	if $AnimatedSprite.animation == "die":
+		is_alive = false
+	if is_alive == false:
+		_ready()
+	
 		
-
-
-
+	
 		
